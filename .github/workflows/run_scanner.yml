@@ -1,21 +1,20 @@
-name: Daily Stock Scan
+name: Stock Scanner
 on:
   schedule:
-    # יריץ את הסריקה בכל יום חול בשעה 16:30 (זמן פתיחת המסחר)
-    - cron: '30 14 * * 1-5'
+    - cron: '30 14 * * 1-5' # ירוץ ב-16:30 שעון ישראל בימי חול
+  workflow_dispatch: # מאפשר לך להריץ ידנית לבדיקה
 jobs:
-  build:
+  run-scanner:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Install dependencies
+      - name: Install deps
         run: pip install -r requirements.txt
-      - name: Run scanner
+      - name: Run logic
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
