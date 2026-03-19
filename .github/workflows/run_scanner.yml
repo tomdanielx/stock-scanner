@@ -1,10 +1,8 @@
 name: Hourly Stock Scan
 on:
   schedule:
-    # ירוץ בכל שעה עגולה מ-14:00 ועד 21:00 UTC (ימי שני עד שישי)
-    # זה מכסה את שעות המסחר העיקריות בארה"ב
-    - cron: '0 14-21 * * 1-5'
-  workflow_dispatch: # מאפשר לך להריץ ידנית מתי שבא לך
+    - cron: '0 14-21 * * 1-5' # ירוץ כל שעה עגולה בשעות המסחר
+  workflow_dispatch: # מאפשר הרצה ידנית
 jobs:
   scan:
     runs-on: ubuntu-latest
