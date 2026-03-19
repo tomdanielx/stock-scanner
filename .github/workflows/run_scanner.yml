@@ -1,14 +1,14 @@
 name: Hourly Stock Scan
 on:
   schedule:
-    - cron: '0 14-21 * * 1-5' # ירוץ כל שעה עגולה בשעות המסחר
-  workflow_dispatch: # מאפשר הרצה ידנית
+    - cron: '0 14-21 * * 1-5'
+  workflow_dispatch:
 jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4 # עדכנו מ-v3 ל-v4
+      - uses: actions/setup-python@v5 # עדכנו מ-v4 ל-v5
         with:
           python-version: '3.9'
       - run: pip install -r requirements.txt
